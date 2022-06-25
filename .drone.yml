@@ -4,6 +4,7 @@ name: build
 steps:
 - name: build&publish  
   image: plugins/docker
+  pull: if-not-exists
   settings:
     username: 
       from_secret: dockerhub-user
@@ -70,10 +71,11 @@ trigger:
 steps:
 - name: serverchan-notice
   image: yakumioto/drone-serverchan
+  pull: if-not-exists
   settings:
     key: 
       from_secret: serverchan-key
-    text: "🔨**${DRONE_REPO_NAME}** ${DRONE_BUILD_STATUS}"
+    text: "🔨${DRONE_REPO_NAME} ${DRONE_BUILD_STATUS}"
     desp: |
       | 项目名称     | **${DRONE_REPO_NAME}**|
       |--------------|--------------------------------------|

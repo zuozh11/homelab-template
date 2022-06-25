@@ -11,7 +11,9 @@ steps:
       from_secret: dockerhub-pwd
     repo: 
       from_secret: docker-repo
-    tags: latest
+    tags: 
+      - latest
+      - v${DRONE_BUILD_NUMBER}
     dockerfile: build/Dockerfile
     context: build/
     pull_image: true

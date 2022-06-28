@@ -25,10 +25,8 @@ steps:
 kind: pipeline
 type: ssh
 name: deploy
-
 depends_on:
 - build
-
 server:
   host: 
     from_secret: ubuntuk-ssh-host
@@ -60,10 +58,10 @@ steps:
 kind: pipeline
 type: docker
 name: notice
-
+clone:
+  disable: true
 depends_on:
 - deploy
-
 trigger:
   status:
   - failure
